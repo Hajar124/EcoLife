@@ -8,3 +8,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }, index * 200); // Stagger the animations
     });
 });
+
+
+document.getElementById('contact-Form').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+  // Generate a key pair (for demonstration purposes)
+  const crypt = new JSEncrypt({ default_key_size: 512 });
+  const publicKey = crypt.getPublicKey();
+  const privateKey = crypt.getPrivateKey();
+
+  // Encrypt a message with the public key
+  crypt.setPublicKey(publicKey);
+  const encryptedMessage = crypt.encrypt(message);
+
+  console.log("Encrypted Message:", encryptedMessage);
+
+  // Decrypt the message with the private key
+  crypt.setPrivateKey(privateKey);
+  const decryptedMessage = crypt.decrypt(encryptedMessage);
+
+  console.log("Decrypted Message:", decryptedMessage);
+
+   
+});
