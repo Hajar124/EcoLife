@@ -13,8 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
 document.getElementById('contact-Form').addEventListener('submit', async function(event) {
     event.preventDefault();
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
     const message = document.getElementById('message').value;
 
   // Generate a key pair (for demonstration purposes)
@@ -24,14 +22,12 @@ document.getElementById('contact-Form').addEventListener('submit', async functio
 
   // Encrypt a message with the public key
   crypt.setPublicKey(publicKey);
-  const encryptedMessage = crypt.encrypt(message);
-
+  const encryptedMessage = await crypt.encrypt(message);
   console.log("Encrypted Message:", encryptedMessage);
 
   // Decrypt the message with the private key
   crypt.setPrivateKey(privateKey);
-  const decryptedMessage = crypt.decrypt(encryptedMessage);
-
+  const decryptedMessage = await crypt.decrypt(encryptedMessage);
   console.log("Decrypted Message:", decryptedMessage);
 
    
